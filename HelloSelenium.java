@@ -83,7 +83,7 @@ public class HelloSelenium {
         scrollEnd(driver);
         expandReviews(driver, reviewno);
         System.out.println("Number of reviews: " + reviewno);
-        for (int i = 1; i < reviewno + 1; i++) {
+        for (int i = 1; i < 17; i++) {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
@@ -96,7 +96,7 @@ public class HelloSelenium {
 
             try {
 
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 logger.log(Level.INFO, "sleep complete");
                 WebElement review = driver.findElement(By.xpath(review_id));
                 try {
