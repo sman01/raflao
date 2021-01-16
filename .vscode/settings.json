@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "selenium-server-standalone-3.141.59.jar"
+    ]
+}
