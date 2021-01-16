@@ -78,7 +78,6 @@ public class HelloSelenium {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             var review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
-
             var usage_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]";
             var subSpace_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]/span";
             var superSub_id = "//div[@id='userReviews']/div[" + String.valueOf(i)
