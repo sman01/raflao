@@ -99,6 +99,20 @@ public class HelloSelenium {
 
     }
 
+    static String review_final(WebElement review, WebElement usage) {
+        return review.getText().replace(usage.getText(), "");
+    }
+
+    static String usage_text(WebElement usage, WebElement subSpace, WebElement superSub) {
+        var lmao = "";
+        if (superSub != null) {
+            return usage.getText().replace(subSpace.getText(), "");
+        } else {
+            lmao = usage.getText().replace(subSpace, "");
+            return lmao.replace(superSub, "");
+        }
+    }
+
     static WebElement find_superSub(int i, WebDriver driver) {
         var superSub_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]/span[2]";
         try {
@@ -150,26 +164,7 @@ public class HelloSelenium {
                 Thread.sleep(100);
                 logger.log(Level.INFO, "sleep complete");
                 WebElement review = driver.findElement(By.xpath(review_id));
-                try {
 
-                    var lmao = usage.getText().replace(subSpace.getText(), "");
-                    var final_usage = lmao.replace(superSub.getText(), "");
-                    var final_review = review.getText().replace(usage.getText(), "");
-                    reviewsNumber++;
-
-                } catch (Exception e) {
-
-                    try {
-                        WebElement usage = driver.findElement(By.xpath(usage_id));
-
-                        var lmao = usage.getText().replace(subSpace.getText(), "");
-                        var final_usage = lmao.replace(superSub.getText(), "");
-                        var final_review = review.getText().replace(usage.getText(), "");
-                        reviewsNumber++;
-                    } catch (Exception e1) {
-                        logger.log(Level.INFO, "usage not found");
-                    }
-                }
                 WebElement ratString = driver.findElement(By.xpath(ratString_id));
                 WebElement date = driver.findElement(By.xpath(date_id));
                 WebElement user = driver.findElement(By.xpath(user_id));
