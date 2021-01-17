@@ -106,10 +106,11 @@ public class HelloSelenium {
     static String usage_text(WebElement usage, WebElement subSpace, WebElement superSub) {
         var lmao = "";
         if (superSub != null) {
-            return usage.getText().replace(subSpace.getText(), "");
+            lmao = usage.getText().replace(subSpace.getText(), "");
+            return lmao.replace(superSub.getText(), "");
         } else {
-            lmao = usage.getText().replace(subSpace, "");
-            return lmao.replace(superSub, "");
+            return usage.getText().replace(subSpace.getText(), "");
+
         }
     }
 
@@ -164,18 +165,20 @@ public class HelloSelenium {
                 Thread.sleep(100);
                 logger.log(Level.INFO, "sleep complete");
                 WebElement review = driver.findElement(By.xpath(review_id));
-
+                WebElement usage = find_usage(i, driver);
+                WebElement subSpace = find_subSpace(i, driver);
+                WebElement superSub = find_superSub(i, driver);
                 WebElement ratString = driver.findElement(By.xpath(ratString_id));
                 WebElement date = driver.findElement(By.xpath(date_id));
                 WebElement user = driver.findElement(By.xpath(user_id));
-
+                System.out.println("Review: " + review_final(review, usage));
+                System.out.println("Usage: " + usage_text(usage, subSpace, superSub));
                 System.out.println("Rating: " + ratString.getText());
                 System.out.println("Date: " + date.getText());
                 System.out.println("User: " + user.getText());
 
             } catch (Exception e) {
-                System.out.println("caught");
-                logger.log(Level.INFO, "ayyyy");
+                logger.log(Level.INFO, "issue with element");
             }
         }
         logger.log(Level.INFO, String.valueOf(reviewsNumber));
