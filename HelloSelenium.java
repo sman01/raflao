@@ -64,6 +64,59 @@ public class HelloSelenium {
 
     }
 
+    static WebElement find_usage(int i, WebDriver driver) {
+        var usage_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]";
+        try {
+            WebElement usage = driver.findElement(By.xpath(usage_id));
+            return usage;
+        } catch (Exception ex) {
+            usage_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span";
+            try {
+                WebElement usage = driver.findElement(By.xpath(usage_id));
+                return usage;
+            } catch (Exception exc) {
+                logger.log(Level.INFO, "usage not found");
+                return null;
+            }
+        }
+    }
+
+    static WebElement find_subSpace(int i, WebDriver driver) {
+        var subSpace_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]/span";
+        try {
+            WebElement subSpace = driver.findElement(By.xpath(subSpace_id));
+            return subSpace;
+        } catch (Exception e) {
+            subSpace_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span/span[1]";
+            try {
+                WebElement subSpace = driver.findElement(By.xpath(subSpace_id));
+                return subSpace;
+            } catch (Exception e1) {
+                logger.log(Level.INFO, "subSpace not found");
+                return null;
+            }
+        }
+
+    }
+
+    static WebElement find_superSub(int i, WebDriver driver) {
+        var superSub_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]/span[2]";
+        try {
+            WebElement superSub = driver.findElement(By.xpath(superSub_id));
+            return superSub;
+        } catch (Exception e) {
+            superSub_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span/span[2]";
+            try {
+                WebElement superSub = driver.findElement(By.xpath(superSub_id));
+                return superSub;
+            } catch (Exception e1) {
+                logger.log(Level.INFO, "superSub not found");
+                return null;
+            }
+            // TODO: handle exception
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
         var review_id = "";
         var usage_id = "";
@@ -87,9 +140,7 @@ public class HelloSelenium {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
-            usage_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]";
-            subSpace_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]/span";
-            superSub_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]/span[2]";
+
             ratString_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[1]/div[1]/span[2]/span";
             date_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[1]/div[1]/span[3]";
             user_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[1]/div[1]/span[1]/span";
@@ -100,24 +151,17 @@ public class HelloSelenium {
                 logger.log(Level.INFO, "sleep complete");
                 WebElement review = driver.findElement(By.xpath(review_id));
                 try {
-                    WebElement usage = driver.findElement(By.xpath(usage_id));
-                    WebElement subSpace = driver.findElement(By.xpath(subSpace_id));
-                    WebElement superSub = driver.findElement(By.xpath(superSub_id));
+
                     var lmao = usage.getText().replace(subSpace.getText(), "");
                     var final_usage = lmao.replace(superSub.getText(), "");
                     var final_review = review.getText().replace(usage.getText(), "");
                     reviewsNumber++;
 
                 } catch (Exception e) {
-                    usage_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span";
-                    subSpace_id = "//div[@id='userReviews']/div[" + String.valueOf(i)
-                            + "]/div/div[2]/div/p/span/span[1]";
-                    superSub_id = "//div[@id='userReviews']/div[" + String.valueOf(i)
-                            + "]/div/div[2]/div/p/span/span[2]";
+
                     try {
                         WebElement usage = driver.findElement(By.xpath(usage_id));
-                        WebElement subSpace = driver.findElement(By.xpath(subSpace_id));
-                        WebElement superSub = driver.findElement(By.xpath(superSub_id));
+
                         var lmao = usage.getText().replace(subSpace.getText(), "");
                         var final_usage = lmao.replace(superSub.getText(), "");
                         var final_review = review.getText().replace(usage.getText(), "");
