@@ -18,6 +18,18 @@ import java.util.List;
 public class HelloSelenium {
     private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+    // Add elements to an array
+    public static String[] add(String[] arr, String... elements) {
+        String[] tempArr = new String[arr.length + elements.length];
+        System.arraycopy(arr, 0, tempArr, 0, arr.length);
+
+        for (int i = 0; i < elements.length; i++)
+            tempArr[arr.length + i] = elements[i];
+        return tempArr;
+
+    }
+
+    // Number of reviews of a vehicle
     static int numberOfReviews(WebDriver driver) {
         String revs = "/html/body/div[15]/div/div[1]/section/div[2]/div[1]/div/div/span";
         WebElement reviews = driver.findElement(By.xpath(revs));
@@ -30,6 +42,7 @@ public class HelloSelenium {
         }
     }
 
+    // clicks on view more till the last review has appeared
     static void scrollEnd(WebDriver driver) throws InterruptedException {
         String id = "//*[@id='loadMore']/span";
         boolean lmao = true;
@@ -50,6 +63,7 @@ public class HelloSelenium {
         }
     }
 
+    // expands the reviews that have exceeded the character limits on display
     static void expandReviews(WebDriver driver, int reviewno) {
 
         for (int j = 1; j <= reviewno; j++) {
@@ -64,6 +78,7 @@ public class HelloSelenium {
 
     }
 
+    // Finds the usage of the car from the review
     static WebElement find_usage(int i, WebDriver driver) {
         var usage_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]";
         try {
@@ -82,6 +97,7 @@ public class HelloSelenium {
         }
     }
 
+    // USed for section is filtered here
     static WebElement find_subSpace(int i, WebDriver driver) {
         var subSpace_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]/span";
         try {
@@ -106,6 +122,7 @@ public class HelloSelenium {
 
     }
 
+    // Prints final review text
     static String review_final(WebElement review, WebElement usage) {
         return review.getText().replace(usage.getText(), "");
     }
@@ -121,6 +138,7 @@ public class HelloSelenium {
         }
     }
 
+    // Finds the milage and enigne section if it exists for a review
     static WebElement find_superSub(int i, WebDriver driver) {
         var superSub_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span[3]/span[2]";
         try {
@@ -148,7 +166,11 @@ public class HelloSelenium {
         var date_id = "";
         var user_id = "";
         int reviewsNumber = 0;
-
+        String[] review_ar = { "Reviews," };
+        String[] usage_ar = { "Usage" };
+        String[] date_ar = { "Date" };
+        String[] user_ar = { "User" };
+        String[] rating_ar = { "Rating" };
         System.setProperty("webdriver.gecko.driver", "/home/sman/Desktop/raflao/geckodriver");
         WebDriver driver = new FirefoxDriver();
         Dimension d = new Dimension(640, 720);
@@ -177,18 +199,25 @@ public class HelloSelenium {
                 WebElement ratString = driver.findElement(By.xpath(ratString_id));
                 WebElement date = driver.findElement(By.xpath(date_id));
                 WebElement user = driver.findElement(By.xpath(user_id));
-                System.out.println("Review: " + review_final(review, usage));
-                System.out.println("Usage: " + usage_text(usage, subSpace, superSub));
-                System.out.println("Rating: " + ratString.getText());
-                System.out.println("Date: " + date.getText());
-                System.out.println("User: " + user.getText());
+
+                review_ar = add(review_ar, review_final(review, usage));
+                usage_ar = add(usage_ar, usage_text(usage, subSpace, superSub));
+                rating_ar = add(rating_ar, ratString.getText());
+                date_ar = add(date_ar, date.getText());
+                user_ar = add(user_ar, user.getText());
+                System.out.println("collecting");
                 reviewsNumber++;
 
             } catch (Exception e) {
                 logger.log(Level.INFO, "issue with element");
             }
         }
-        logger.log(Level.INFO, String.valueOf(reviewsNumber));
+        logger.log(Level.INFO, "Number of actual reviews :: " + String.valueOf(reviewsNumber));
+        System.out.println(review_ar.length);
+        System.out.println(usage_ar.length);
+        System.out.println(date_ar.length);
+        System.out.println(rating_ar.length);
+        System.out.println(user_ar.length);
         driver.quit();
     }
 
