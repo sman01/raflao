@@ -170,7 +170,6 @@ public class HelloSelenium {
             try {
 
                 Thread.sleep(100);
-                logger.log(Level.INFO, "sleep complete");
                 WebElement review = driver.findElement(By.xpath(review_id));
                 WebElement usage = find_usage(i, driver);
                 WebElement subSpace = find_subSpace(i, driver);
@@ -183,6 +182,7 @@ public class HelloSelenium {
                 System.out.println("Rating: " + ratString.getText());
                 System.out.println("Date: " + date.getText());
                 System.out.println("User: " + user.getText());
+                reviewsNumber++;
 
             } catch (Exception e) {
                 logger.log(Level.INFO, "issue with element");
