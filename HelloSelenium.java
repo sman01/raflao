@@ -77,6 +77,7 @@ public class HelloSelenium {
             } catch (Exception exc) {
                 logger.log(Level.INFO, "usage not found");
                 return null;
+
             }
         }
     }
@@ -92,8 +93,14 @@ public class HelloSelenium {
                 WebElement subSpace = driver.findElement(By.xpath(subSpace_id));
                 return subSpace;
             } catch (Exception e1) {
-                logger.log(Level.INFO, "subSpace not found");
-                return null;
+                subSpace_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p/span/span";
+                try {
+                    WebElement subSpace = driver.findElement(By.xpath(subSpace_id));
+                    return subSpace;
+                } catch (Exception exp) {
+                    logger.log(Level.INFO, "subSpace not found");
+                    return null;
+                }
             }
         }
 
@@ -151,7 +158,7 @@ public class HelloSelenium {
         scrollEnd(driver);
         expandReviews(driver, reviewno);
         System.out.println("Number of reviews: " + reviewno);
-        for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 1707; i++) {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
