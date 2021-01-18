@@ -66,7 +66,7 @@ public class HelloSelenium {
     // expands the reviews that have exceeded the character limits on display
     static void expandReviews(WebDriver driver, int reviewno) {
 
-        for (int j = 1; j <= reviewno; j++) {
+        for (int j = 1; j <= 10; j++) {
             var expand = "//div[@id='userReviews']/div[" + String.valueOf(j) + "]/div/div[2]/div/p/span[2]";
 
             try {
