@@ -32,7 +32,6 @@ public class ResultGenerator {
 			System.out.println("Enter Data");
 			for (int i = 0; i < review.length; i++) {
 				String row = date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i];
-				System.out.println(row);
 				String[] rowdata = row.split("::");
 				data.add(rowdata);
 			}
