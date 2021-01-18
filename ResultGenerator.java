@@ -15,6 +15,10 @@ public class ResultGenerator {
 	public static void addDataToCSV(String output) {
 		// first create file object for file placed at location
 		// specified by filepath
+		String[] Jeep = { "Compass", "Wrangler", "Compass-Trailhawk", "Wrangler-2016-2019", "Grand-Cherokee" };
+		String[] Jeep2 = { "Compass", "Wrangler", "Compass-Trailhawk", "Wrangler-2016-2019", "Grand-Cherokee" };
+
+		String[] Jeep3 = { "Compass", "Wrangler", "Compass-Trailhawk", "Wrangler-2016-2019", "Grand-Cherokee" };
 		File file = new File(output);
 		Scanner sc = new Scanner(System.in);
 		try {
@@ -31,8 +35,8 @@ public class ResultGenerator {
 			System.out.println("Enter no of rows");
 			int noOfRow = Integer.parseInt(sc.nextLine());
 			System.out.println("Enter Data");
-			for (int i = 0; i < noOfRow; i++) {
-				String row = sc.nextLine();
+			for (int i = 0; i < Jeep.length; i++) {
+				String row = Jeep[i] + " " + Jeep2[i] + " " + Jeep3[i];
 				String[] rowdata = row.split(" ");
 				data.add(rowdata);
 			}
