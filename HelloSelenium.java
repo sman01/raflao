@@ -180,7 +180,7 @@ public class HelloSelenium {
         scrollEnd(driver);
         expandReviews(driver, reviewno);
         System.out.println("Number of reviews: " + reviewno);
-        for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 17; i++) {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
@@ -201,7 +201,14 @@ public class HelloSelenium {
                 WebElement user = driver.findElement(By.xpath(user_id));
 
                 review_ar = add(review_ar, review_final(review, usage));
-                usage_ar = add(usage_ar, usage_text(usage, subSpace, superSub).replace("\n", " "));
+                try {
+                    usage_ar = add(usage_ar, usage_text(usage, subSpace, superSub).replace("\n", " "));
+
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    usage_ar = add(usage_ar, usage_text(usage, subSpace, superSub));
+
+                }
                 rating_ar = add(rating_ar, ratString.getText());
                 date_ar = add(date_ar, date.getText());
                 user_ar = add(user_ar, user.getText());

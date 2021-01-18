@@ -31,11 +31,11 @@ public class ResultGenerator {
 
 			System.out.println("Enter Data");
 			for (int i = 0; i < review.length; i++) {
-				String row = date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i];
+				String row = date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i] + "";
 				String[] rowdata = row.split("::");
 				data.add(rowdata);
 			}
-
+			System.out.println(data);
 			writer.writeAll(data);
 
 			// closing writer connection
