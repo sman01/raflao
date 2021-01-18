@@ -166,7 +166,7 @@ public class HelloSelenium {
         var date_id = "";
         var user_id = "";
         int reviewsNumber = 0;
-        String[] review_ar = { "Reviews," };
+        String[] review_ar = { "Reviews" };
         String[] usage_ar = { "Usage" };
         String[] date_ar = { "Date" };
         String[] user_ar = { "User" };
@@ -180,7 +180,7 @@ public class HelloSelenium {
         scrollEnd(driver);
         expandReviews(driver, reviewno);
         System.out.println("Number of reviews: " + reviewno);
-        for (int i = 1; i < 1707; i++) {
+        for (int i = 1; i < 17; i++) {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
@@ -213,12 +213,14 @@ public class HelloSelenium {
             }
         }
         logger.log(Level.INFO, "Number of actual reviews :: " + String.valueOf(reviewsNumber));
+        driver.quit();
         System.out.println(review_ar.length);
         System.out.println(usage_ar.length);
         System.out.println(date_ar.length);
         System.out.println(rating_ar.length);
         System.out.println(user_ar.length);
-        driver.quit();
+        ResultGenerator.addDataToCSV(review_ar, user_ar, date_ar, usage_ar, rating_ar);
+
     }
 
 }

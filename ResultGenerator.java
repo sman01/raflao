@@ -6,38 +6,33 @@ import java.util.*;
 import com.opencsv.CSVWriter;
 
 public class ResultGenerator {
-	private static final String CSV_FILE_PATH = "./result.csv";
 
 	public static void main(String[] args) {
-		addDataToCSV(CSV_FILE_PATH);
+		// addDataToCSV( review, String [] user, String[] date, String[] usage,String[]
+		// rating);
+		System.out.println("Let it begin");
 	}
 
-	public static void addDataToCSV(String output) {
+	public static void addDataToCSV(String[] review, String[] user, String[] date, String[] usage, String[] rating) {
 		// first create file object for file placed at location
 		// specified by filepath
-		String[] Jeep = { "Compass", "Wrangler", "Compass-Trailhawk", "Wrangler-2016-2019", "Grand-Cherokee" };
-		String[] Jeep2 = { "Compass", "Wrangler", "Compass-Trailhawk", "Wrangler-2016-2019", "Grand-Cherokee" };
-
-		String[] Jeep3 = { "Compass", "Wrangler", "Compass-Trailhawk", "Wrangler-2016-2019", "Grand-Cherokee" };
-		File file = new File(output);
+		File file = new File("./Result.csv");
 		Scanner sc = new Scanner(System.in);
 		try {
 			// create FileWriter object with file as parameter
 			FileWriter outputfile = new FileWriter(file);
 
 			// create CSVWriter with ';' as separator
-			CSVWriter writer = new CSVWriter(outputfile, ',', CSVWriter.NO_QUOTE_CHARACTER,
+			CSVWriter writer = new CSVWriter(outputfile, ';', CSVWriter.NO_QUOTE_CHARACTER,
 					CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
 
 			// create a List which contains Data
 			List<String[]> data = new ArrayList<String[]>();
 
-			System.out.println("Enter no of rows");
-			int noOfRow = Integer.parseInt(sc.nextLine());
 			System.out.println("Enter Data");
-			for (int i = 0; i < Jeep.length; i++) {
-				String row = Jeep[i] + " " + Jeep2[i] + " " + Jeep3[i];
-				String[] rowdata = row.split(" ");
+			for (int i = 0; i < review.length; i++) {
+				String row = date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i];
+				String[] rowdata = row.split("::");
 				data.add(rowdata);
 			}
 
