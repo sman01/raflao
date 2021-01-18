@@ -180,7 +180,7 @@ public class HelloSelenium {
         scrollEnd(driver);
         expandReviews(driver, reviewno);
         System.out.println("Number of reviews: " + reviewno);
-        for (int i = 1; i < 17; i++) {
+        for (int i = 1; i < 2; i++) {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
