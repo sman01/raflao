@@ -219,7 +219,6 @@ public class HelloSelenium {
         System.out.println(rating_ar.length);
         System.out.println(user_ar.length);
         driver.quit();
-        String[] csv = { review_ar, usage_ar, date_ar, rating_ar, user_ar };
     }
 
 }
