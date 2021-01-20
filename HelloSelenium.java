@@ -72,7 +72,7 @@ public class HelloSelenium {
     // expands the reviews that have exceeded the character limits on display
     static void expandReviews(WebDriver driver, int reviewno) {
 
-        for (int j = 1; j <= reviewno; j++) {
+        for (int j = 1; j <= 20; j++) {
             var expand = "//div[@id='userReviews']/div[" + String.valueOf(j) + "]/div/div[2]/div/p/span[2]";
 
             try {
@@ -172,11 +172,12 @@ public class HelloSelenium {
         var date_id = "";
         var user_id = "";
         int reviewsNumber = 0;
-        String[] review_ar = { "Reviews" };
-        String[] usage_ar = { "Usage" };
-        String[] date_ar = { "Date" };
-        String[] user_ar = { "User" };
-        String[] rating_ar = { "Rating" };
+        int breakPoint = 0;
+        String[] review_ar = {};
+        String[] usage_ar = {};
+        String[] date_ar = {};
+        String[] user_ar = {};
+        String[] rating_ar = {};
         System.setProperty("webdriver.gecko.driver", "/home/sman/Desktop/raflao/geckodriver");
         WebDriver driver = new FirefoxDriver();
         Dimension d = new Dimension(640, 720);
@@ -186,7 +187,7 @@ public class HelloSelenium {
         scrollEnd(driver);
         expandReviews(driver, reviewno);
         System.out.println("Number of reviews: " + reviewno);
-        for (int i = 1; i < 1707; i++) {
+        for (int i = 1; i < 17; i++) {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
@@ -196,7 +197,7 @@ public class HelloSelenium {
             user_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[1]/div[1]/span[1]/span";
 
             try {
-
+                breakPoint = 0;
                 Thread.sleep(100);
                 WebElement review = driver.findElement(By.xpath(review_id));
                 WebElement usage = find_usage(i, driver);
@@ -222,11 +223,13 @@ public class HelloSelenium {
                 reviewsNumber++;
 
             } catch (Exception e) {
+                breakPoint++;
+
                 logger.log(Level.INFO, "issue with element");
             }
         }
         logger.log(Level.INFO, "Number of actual reviews :: " + String.valueOf(reviewsNumber));
-        // driver.quit();
+        driver.quit();
         System.out.println(review_ar.length);
         System.out.println(usage_ar.length);
         System.out.println(date_ar.length);
