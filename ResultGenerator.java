@@ -23,14 +23,15 @@ public class ResultGenerator {
 
 			// create CSVWriter with ';' as separator
 			CSVWriter writer = new CSVWriter(outputfile, ';', CSVWriter.NO_QUOTE_CHARACTER,
-					CSVWriter.DEFAULT_ESCAPE_CHARACTER, "");
+					CSVWriter.DEFAULT_ESCAPE_CHARACTER, " ");
 
 			// create a List which contains Data
 			List<String[]> data = new ArrayList<String[]>();
 
 			System.out.println("Enter Data");
 			for (int i = 0; i < review.length; i++) {
-				String row = date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i];
+				String row = " " + date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i]
+						+ " ";
 				String[] rowdata = row.split("::");
 				data.add(rowdata);
 			}
