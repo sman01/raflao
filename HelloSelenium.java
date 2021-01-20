@@ -32,7 +32,7 @@ public class HelloSelenium {
     // Number of reviews of a vehicle
     static int numberOfReviews(WebDriver driver) {
         try {
-            String revs = "/html/body/div[15]/div/div[1]/section/div[2]/div[1]/div/div/span";
+            String revs = "/html/body/div[13]/div/div[1]/section/div[2]/div[1]/div/div/span";
             WebElement reviews = driver.findElement(By.xpath(revs));
             String review = reviews.getText().replace(" reviews", "");
             int reviewno = Integer.parseInt(review);
@@ -44,6 +44,7 @@ public class HelloSelenium {
         } catch (Exception e35) {
             System.out.println("NANDA OMAi");
         }
+        return 0;
 
     }
 

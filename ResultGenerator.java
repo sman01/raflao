@@ -22,8 +22,8 @@ public class ResultGenerator {
 			FileWriter outputfile = new FileWriter(file);
 
 			// create CSVWriter with ';' as separator
-			CSVWriter writer = new CSVWriter(outputfile, ';', CSVWriter.NO_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER, 
-			CSVWriter.DEFAULT_LINE_END);
+			CSVWriter writer = new CSVWriter(outputfile, ';', CSVWriter.NO_QUOTE_CHARACTER,
+					CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
 
 			// create a List which contains Data
 			List<String[]> data = new ArrayList<String[]>();
