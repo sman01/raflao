@@ -16,7 +16,7 @@ public class ResultGenerator {
 	public static void addDataToCSV(String[] review, String[] user, String[] date, String[] usage, String[] rating) {
 		// first create file object for file placed at location
 		// specified by filepath
-		File file = new File("./nyess.csv");
+		File file = new File("./Result.csv");
 		try {
 			// create FileWriter object with file as parameter
 			FileWriter outputfile = new FileWriter(file);
@@ -32,8 +32,10 @@ public class ResultGenerator {
 			for (int i = 0; i < review.length; i++) {
 				String row = date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i];
 				String[] rowdata = row.split("::");
+				data.add(rowdata);
 			}
 			writer.writeAll(data);
+			System.out.println("ALL DONE");
 
 			// closing writer connection
 			writer.close();
