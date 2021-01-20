@@ -31,15 +31,20 @@ public class HelloSelenium {
 
     // Number of reviews of a vehicle
     static int numberOfReviews(WebDriver driver) {
-        String revs = "/html/body/div[15]/div/div[1]/section/div[2]/div[1]/div/div/span";
-        WebElement reviews = driver.findElement(By.xpath(revs));
-        String review = reviews.getText().replace(" reviews", "");
-        int reviewno = Integer.parseInt(review);
-        if (reviewno > 0) {
-            return (reviewno);
-        } else {
-            return 0;
+        try {
+            String revs = "/html/body/div[15]/div/div[1]/section/div[2]/div[1]/div/div/span";
+            WebElement reviews = driver.findElement(By.xpath(revs));
+            String review = reviews.getText().replace(" reviews", "");
+            int reviewno = Integer.parseInt(review);
+            if (reviewno > 0) {
+                return (reviewno);
+            } else {
+                return 0;
+            }
+        } catch (Exception e35) {
+            System.out.println("NANDA OMAi");
         }
+
     }
 
     // clicks on view more till the last review has appeared
