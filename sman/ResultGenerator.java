@@ -25,7 +25,6 @@ public class ResultGenerator {
 			System.out.println("Enter Data");
 			for (int i = 0; i < review.length; i++) {
 				outputfile.append(date[i] + ";" + user[i] + ";" + rating[i] + ";" + usage[i] + ";" + review[i]);
-				outputfile.append("\n");
 
 			}
 			System.out.println("ALL DONE");

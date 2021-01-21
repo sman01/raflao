@@ -72,7 +72,7 @@ public class HelloSelenium {
     // expands the reviews that have exceeded the character limits on display
     static void expandReviews(WebDriver driver, int reviewno) {
 
-        for (int j = 1; j <= 20; j++) {
+        for (int j = 1; j <= reviewno; j++) {
             var expand = "//div[@id='userReviews']/div[" + String.valueOf(j) + "]/div/div[2]/div/p/span[2]";
 
             try {
@@ -187,7 +187,7 @@ public class HelloSelenium {
         scrollEnd(driver);
         expandReviews(driver, reviewno);
         System.out.println("Number of reviews: " + reviewno);
-        for (int i = 1; i < 17; i++) {
+        for (int i = 1; i < reviewno; i++) {
             logger.log(Level.INFO, "---------------------------------------------------------------" + String.valueOf(i)
                     + "---------------------------------------------------------------");
             review_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[2]/div/p";
@@ -197,7 +197,7 @@ public class HelloSelenium {
             user_id = "//div[@id='userReviews']/div[" + String.valueOf(i) + "]/div/div[1]/div[1]/span[1]/span";
 
             try {
-                breakPoint = 0;
+
                 Thread.sleep(100);
                 WebElement review = driver.findElement(By.xpath(review_id));
                 WebElement usage = find_usage(i, driver);
@@ -220,10 +220,14 @@ public class HelloSelenium {
                 date_ar = add(date_ar, date.getText());
                 user_ar = add(user_ar, user.getText());
                 System.out.println("collecting");
+                breakPoint = 0;
                 reviewsNumber++;
 
             } catch (Exception e) {
                 breakPoint++;
+                if (breakPoint > 20) {
+                    break;
+                }
 
                 logger.log(Level.INFO, "issue with element");
             }
