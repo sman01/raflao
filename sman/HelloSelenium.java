@@ -178,7 +178,7 @@ public class HelloSelenium {
         String[] date_ar = {};
         String[] user_ar = {};
         String[] rating_ar = {};
-        System.setProperty("webdriver.gecko.driver", "/home/sman/Desktop/raflao/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "/home/sman/Desktop/raflao/sman/geckodriver");
         WebDriver driver = new FirefoxDriver();
         Dimension d = new Dimension(640, 720);
         driver.manage().window().setSize(d);

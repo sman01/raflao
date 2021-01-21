@@ -16,10 +16,10 @@ public class ResultGenerator {
 	public static void addDataToCSV(String[] review, String[] user, String[] date, String[] usage, String[] rating) {
 		// first create file object for file placed at location
 		// specified by filepath
-		File file = new File("./lmfao.csv");
-		try {
+		File file = new File("./Review_now.csv");
+		try (FileWriter outputfile = new FileWriter(file)) {
 			// create FileWriter object with file as parameter
-			FileWriter outputfile = new FileWriter(file);
+
 			outputfile.append("Date;User;Rating;Usage;Review");
 			outputfile.append("\n");
 			System.out.println("Enter Data");
@@ -29,9 +29,10 @@ public class ResultGenerator {
 
 			}
 			System.out.println("ALL DONE");
+			outputfile.close();
 
 			// closing writer connection
-			writer.close();
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
