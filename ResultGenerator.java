@@ -27,13 +27,13 @@ public class ResultGenerator {
 
 			// create a List which contains Data
 			List<String[]> data = new ArrayList<String[]>();
-			String row = "Date ::User::Rating::Usage::Review ";
-			String[] rowdata = row.split("::");
-			data.add(rowdata);
+			// String row = "Date ::User::Rating::Usage::Review ";
+			// String[] rowdata = row.split("::");
+			// data.add(rowdata);
 			System.out.println("Enter Data");
 			for (int i = 0; i < review.length; i++) {
-				row = "" + date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i] + "";
-				rowdata = row.split("::");
+				String row = "" + date[i] + "::" + user[i] + "::" + rating[i] + "::" + usage[i] + "::" + review[i] + "";
+				String[] rowdata = row.split("::");
 				data.add(rowdata);
 			}
 			writer.writeAll(data);
