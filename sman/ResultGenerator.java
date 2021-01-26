@@ -17,7 +17,7 @@ public class ResultGenerator {
 			String[] usage, String[] rating) {
 		// first create file object for file placed at location
 		// specified by filepath
-		File file = new File("review/" + company + "_" + model + ".csv");
+		File file = new File("review/BikeFinal.csv");
 		try (FileWriter outputfile = new FileWriter(file)) {
 			// create FileWriter object with file as parameter
 
