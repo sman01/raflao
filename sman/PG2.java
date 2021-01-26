@@ -179,6 +179,13 @@ public class PG2 {
         WebDriver driver = new FirefoxDriver();
         Dimension d = new Dimension(640, 720);
         driver.manage().window().setSize(d);
+        String[] review_ar = {};
+        String[] usage_ar = {};
+        String[] date_ar = {};
+        String[] user_ar = {};
+        String[] rating_ar = {};
+        String[] companies = {};
+        String[] models = {};
         String[] url = { "https://www.zigwheels.com/user-reviews/Maruti-Suzuki/Swift",
                 "https://www.zigwheels.com/user-reviews/Maruti-Suzuki/Baleno",
                 "https://www.zigwheels.com/user-reviews/Maruti-Suzuki/Vitara-Brezza",
@@ -612,11 +619,7 @@ public class PG2 {
             var model = "";
             int reviewsNumber = 0;
             int breakPoint = 0;
-            String[] review_ar = {};
-            String[] usage_ar = {};
-            String[] date_ar = {};
-            String[] user_ar = {};
-            String[] rating_ar = {};
+
             driver.get(url[k]);
             Thread.sleep(8000);
             String[] lmfao = compMod(url[k]);
@@ -658,6 +661,8 @@ public class PG2 {
                     rating_ar = add(rating_ar, ratString.getText());
                     date_ar = add(date_ar, date.getText());
                     user_ar = add(user_ar, user.getText());
+                    companies = add(companies, company);
+                    models = add(models, model);
 
                     System.out.println("collecting");
                     breakPoint = 0;
@@ -674,14 +679,14 @@ public class PG2 {
             }
             logger.log(Level.INFO, "Number of actual reviews :: " + String.valueOf(reviewsNumber));
 
-            System.out.println(review_ar.length);
-            System.out.println(usage_ar.length);
-            System.out.println(date_ar.length);
-            System.out.println(rating_ar.length);
-            System.out.println(user_ar.length);
-            ResultGenerator.addDataToCSV(company, model, review_ar, user_ar, date_ar, usage_ar, rating_ar);
-
         }
+        System.out.println(review_ar.length);
+        System.out.println(usage_ar.length);
+        System.out.println(date_ar.length);
+        System.out.println(rating_ar.length);
+        System.out.println(user_ar.length);
+        ResultGenerator.addDataToCSV(companies, models, review_ar, user_ar, date_ar, usage_ar, rating_ar);
+
         driver.quit();
     }
 

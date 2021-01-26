@@ -13,7 +13,7 @@ public class ResultGenerator {
 		System.out.println("Let it begin");
 	}
 
-	public static void addDataToCSV(String company, String model, String[] review, String[] user, String[] date,
+	public static void addDataToCSV(String[] company, String[] model, String[] review, String[] user, String[] date,
 			String[] usage, String[] rating) {
 		// first create file object for file placed at location
 		// specified by filepath
@@ -25,7 +25,7 @@ public class ResultGenerator {
 			outputfile.append("\n");
 			System.out.println("Enter Data");
 			for (int i = 0; i < review.length; i++) {
-				outputfile.append(company + ";" + model + ";" + date[i] + ";" + user[i] + ";" + rating[i] + ";"
+				outputfile.append(company[i] + ";" + model[i] + ";" + date[i] + ";" + user[i] + ";" + rating[i] + ";"
 						+ usage[i] + ";" + review[i]);
 
 			}
