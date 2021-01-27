@@ -711,7 +711,7 @@ public class PG2 {
             int breakPoint = 0;
 
             driver.get(url[k]);
-            Thread.sleep(8000);
+            Thread.sleep(3000);
             String[] lmfao = compMod(url[k]);
             company = lmfao[0];
             model = lmfao[1];
